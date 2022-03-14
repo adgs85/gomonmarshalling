@@ -6,24 +6,22 @@ import (
 	"github.com/spf13/viper"
 )
 
-var config *viper.Viper
+var config *viper.Viper = initViperConfig()
 
-func initViperConfig() {
-	if config == nil {
-		viperInst := viper.New()
-		viperInst.AddConfigPath(".")
-		viperInst.AutomaticEnv()
+func initViperConfig() *viper.Viper {
+	viperInst := viper.New()
+	viperInst.AddConfigPath(".")
+	viperInst.AutomaticEnv()
 
-		viperError := viperInst.ReadInConfig()
+	viperError := viperInst.ReadInConfig()
 
-		if viperError != nil {
-			log.Fatalf("%v", viperError)
-		}
-		config = viperInst
+	if viperError != nil {
+		log.Fatalf("%v", viperError)
 	}
+
+	return viperInst
 }
 
 func GetViperConfig() *viper.Viper {
-	initViperConfig()
 	return config
 }
