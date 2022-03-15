@@ -2,6 +2,7 @@ package envconfig
 
 type StatsConfig struct {
 	ServerUrl         string `mapstructure:"stats_server_url"`
-	RequestTimeoutSec string `mapstructure:"request_timeout_sec"`
+	RequestTimeoutSec int    `mapstructure:"request_timeout_sec"`
 	HostName          string `mapstructure:"host_name"`
+	HeartBeatSec      int    `mapstructure:"heart_beat_sec"`
 }
